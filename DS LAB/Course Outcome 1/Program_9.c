@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define n 4
+#define n 3
 
 int front=-1,rear=-1;
 int queue[n];
@@ -122,7 +122,14 @@ void display()
 		}
 		else
 		{
-			for(i=front;i<=n;i++)
+			if(rear<front)
+			{
+				for(i=0;i<=rear;i++)
+				{
+					printf("%d\t",queue[i]);
+				}	
+			}
+			for(i=front;i<n;i++)
 			{
 				printf("%d\t",queue[i]);
 			}
