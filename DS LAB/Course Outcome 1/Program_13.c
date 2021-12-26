@@ -22,7 +22,7 @@ void inoredersuccessor(struct node *t)
 	}
 	else
 	{
-		struct node r=root, s;
+		struct node *r=root, *s;
 		while(r->data!=t->data)
 		{
 			if(p->data<=r->data)
@@ -34,8 +34,9 @@ void inoredersuccessor(struct node *t)
 			{
 				r=r->right;
 			}
-			printf("%d is the inorder successor",s);
+			
 		}
+		printf("%d is the inorder successor",s->data);
 	}
 }
 void search(struct node *t)
@@ -164,6 +165,7 @@ void main()
 		printf("4. Postorder\n");
 		printf("5. Minimum value\n");
 		printf("6. Maximum value\n");
+		printf("7. Inorder Successor\n");
 	    	printf("\nEnter your option : ");
 	    	scanf("%d",&option);
 		switch(option)
@@ -181,6 +183,10 @@ void main()
 			case 5: minimum(root);
 				break;
 			case 6: maximum(root);
+				break;
+			case 7: printf("\nEnter the data to find successor: ");
+				scanf("%d",&k);
+				inoredersuccessor(root);
 				break;
 			default: printf("\nInvalid Option");
 		}
