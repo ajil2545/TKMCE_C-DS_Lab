@@ -9,34 +9,49 @@ struct node
 };
 int n,i,item,k;
 struct node *p,*q,*root,*temp;
-void inoredersuccessor(struct node *t)
+void inoredersuccessor(struct node *t,int tk)
 {
-	if(t->right!=NULL)
+	if(t->data==tk)
 	{
-		temp=t->right;
-		while(temp->left!=NULL)
+		if(t->right!=NULL)
 		{
-			temp=temp->left;
-			printf("%d",temp->data);
+			temp=t->right;
+			while(temp->left!=NULL)
+			{
+				temp=temp->left;
+				printf("%d",temp->data);
+			}
 		}
+		else
+		{
+			struct node *r=root, *s;
+			while(r->data!=t->data)
+			{
+				if(p->data<=r->data)
+				{
+					s=r;
+					r=r->left;
+				}
+				else
+				{
+					r=r->right;
+				}
+				
+			}
+			printf("%d is the inorder successor",s->data);
+		}
+	}
+	else if(t->data>tk && t->left!=NULL)
+	{
+		inoredersuccessor(t->left,tk);
+	}
+	else if(t->data<tk && t->right!=NULL)
+	{
+		inoredersuccessor(t->right,tk);
 	}
 	else
 	{
-		struct node *r=root, *s;
-		while(r->data!=t->data)
-		{
-			if(p->data<=r->data)
-			{
-				s=r;
-				r=r->left;
-			}
-			else
-			{
-				r=r->right;
-			}
-			
-		}
-		printf("%d is the inorder successor",s->data);
+		printf("%d is not Found",tk);
 	}
 }
 void search(struct node *t)
@@ -107,7 +122,7 @@ void maximum(struct node *t)
 }
 void main()
 {
-	int c=1,option;
+	int c=1,option,key;
 	printf("Enter the number of nodes\n");
 	scanf("%d",&n);
 	for(i=0;i<n;i++)
@@ -185,8 +200,8 @@ void main()
 			case 6: maximum(root);
 				break;
 			case 7: printf("\nEnter the data to find successor: ");
-				scanf("%d",&k);
-				inoredersuccessor(root);
+				scanf("%d",&key);
+				inoredersuccessor(root,key);
 				break;
 			default: printf("\nInvalid Option");
 		}
